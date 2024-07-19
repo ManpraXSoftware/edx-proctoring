@@ -31,7 +31,7 @@ from django.utils.translation import gettext as _
 from edx_proctoring.models import ProctoredExamStudentAttempt
 from edx_proctoring.runtime import get_runtime_service
 from edx_proctoring.statuses import ProctoredExamStudentAttemptStatus
-
+from openedx.core.lib.api.authentication import BearerAuthentication
 log = logging.getLogger(__name__)
 
 AES_BLOCK_SIZE_BYTES = int(AES.block_size / 8)
@@ -41,7 +41,7 @@ class AuthenticatedAPIView(APIView):
     """
     Authenticate APi View.
     """
-    authentication_classes = (SessionAuthentication, JwtAuthentication)
+    authentication_classes = (SessionAuthentication, JwtAuthentication,BearerAuthentication)
     permission_classes = (IsAuthenticated,)
 
 
